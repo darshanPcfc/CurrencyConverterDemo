@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.currencyconverterdemo.ui.fragment.CurrencyConverterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_blue_dark">
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/progress_bar_top_spacing"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/medium_spacing"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/purple_200"
+            android:max="100"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="lollipop" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.06" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.94" />
+
+        <TextView
+            android:id="@+id/txt_update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_spacing"
+            android:gravity="center"
+            android:text="@string/update_text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+            app:layout_constraintRight_toRightOf="@id/guideline_right"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_dash"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_spacing"
+            app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+            app:layout_constraintRight_toRightOf="@id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@id/txt_update"
+            card_view:cardCornerRadius="@dimen/medium_spacing"
+            card_view:cardElevation="@dimen/regular_spacing">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/medium_spacing">
+
+                <TextView
+                    android:id="@+id/txt_convert"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/title_currency"
+                    android:textSize="@dimen/medium_text_size"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.5" />
+
+                <TextView
+                    android:id="@+id/txt_convert2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/title_convert"
+                    android:textSize="@dimen/medium_text_size"
+                    app:layout_constraintLeft_toRightOf="@+id/txt_convert"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.5" />
+
+                <FrameLayout
+                    android:id="@+id/container_spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/currency_spinner_bg"
+                    android:gravity="center"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_convert"
+                    app:layout_constraintWidth_percent="0.5">
+
+                    <Spinner
+                        android:id="@+id/spn_currency"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/txt_country2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/medium_spacing"
+                    android:gravity="center"
+                    android:text="@string/txt_aud"
+                    android:textSize="@dimen/large_text_size"
+                    app:layout_constraintLeft_toRightOf="@+id/container_spinner"
+                    app:layout_constraintTop_toBottomOf="@id/txt_convert2"
+                    app:layout_constraintWidth_percent="0.5" />
+
+                <TextView
+                    android:id="@+id/txt_currency"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/regular_spacing"
+                    android:gravity="center"
+                    android:text="@string/txt_aud"
+                    android:textSize="@dimen/medium_text_size"
+                    app:layout_constraintBottom_toTopOf="@id/btn_reset"
+                    app:layout_constraintLeft_toRightOf="@+id/container_spinner"
+                    app:layout_constraintTop_toBottomOf="@id/txt_country2"
+                    app:layout_constraintWidth_percent="0.5" />
+
+                <EditText
+                    android:id="@+id/et_amount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/medium_spacing"
+                    android:autofillHints="@string/default_available_amount"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="7"
+                    android:text="@={viewModel.availableAmount}"
+                    android:textSize="@dimen/medium_text_size"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/container_spinner"
+                    app:layout_constraintWidth_percent="0.5"
+                    card_view:ignore="LabelFor" />
+
+                <Button
+                    android:id="@+id/btn_convert"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/regular_spacing"
+                    android:layout_marginRight="@dimen/regular_spacing"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.convertRates()}"
+                    android:padding="@dimen/medium_spacing"
+                    android:text="@string/btn_convert_text"
+                    android:textSize="@dimen/medium_text_size"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_reset"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_amount" />
+
+                <Button
+                    android:id="@+id/btn_reset"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/regular_spacing"
+                    android:layout_marginLeft="@dimen/regular_spacing"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.resetScreenData()}"
+                    android:padding="@dimen/medium_spacing"
+                    android:text="@string/btn_reset_text"
+                    android:textSize="@dimen/medium_text_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@+id/btn_convert"
+                    app:layout_constraintTop_toBottomOf="@id/et_amount" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/large_spacing"
+            android:background="@drawable/currency_spinner_bg"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel. refreshScreen()}"
+            android:padding="@dimen/medium_spacing"
+            android:text="@string/txt_refresh_rates"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+            app:layout_constraintRight_toRightOf="@id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@id/cv_dash" />
+
+        <TextView
+            android:id="@+id/txt_one_unit_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/medium_spacing"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+            app:layout_constraintRight_toRightOf="@id/guideline_right" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

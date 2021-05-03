@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Converter</string>
+    <string name="update_text">"Last updated "</string>
+    <string name="title_currency">Currency</string>
+    <string name="title_convert">Convertion</string>
+    <string name="txt_aud">AU$</string>
+    <string name="default_available_amount">0.00</string>
+    <string name="btn_convert_text">Convert</string>
+    <string name="btn_reset_text">Reset</string>
+    <string name="txt_refresh_rates">Refresh Rates</string>
+    <string name="txt_enter_amount">Enter Amount</string>
+    <string name="txt_one_unit">Conversion Rate = </string>
+
+    <string name="str_error">Argh Error</string>
+    <string name="str_connection_error">Connectivity Issue</string>
+    <string name="str_no_data">No Data Found</string>
+    <string name="str_no_internet">Seems like No internet Available</string>
+    <string name="str_dismiss">Dismiss</string>
+</resources>
